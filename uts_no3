@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simulasi Pembayaran THR dan PPh</title>
+</head>
+
+<body>
+    <h2>Simulasi Pembayaran THR dan PPh</h2>
+    <label for="gajiPokok">Gaji Pokok:</label>
+    <input type="number" id="gajiPokok"><br><br>
+    <label for="tunjanganTetap">Tunjangan Tetap:</label>
+    <input type="number" id="tunjanganTetap"><br><br>
+    <label for="masaKerja">Masa Kerja (tahun):</label>
+    <input type="number" id="masaKerja"><br><br>
+    <button onclick="prosesPembayaran()">Hitung Pembayaran</button><br><br>
+    <pre id="output"></pre>
+
+    <script>
+        function hitungTHR(gajiPokok, tunjanganTetap, masaKerja) {
+            if (masaKerja < 1) return 0;
+            else if (masaKerja < 5) return (gajiPokok + tunjanganTetap);
+            else if (masaKerja <
+                10) return 2 * (gajiPokok + tunjanganTetap);
+            else return 3 * (gajiPokok + tunjanganTetap);
+            menghitung PPh 21
+
+            function hitungPPh(gajiTotal, ptkp) {
+                return (gajiTotal > ptkp) ? 0.05 * (gajiTotal - ptkp) :
+                    0;
+            }
+
+            function tampilkanOutput(thr, pph, totalPembayaran) {
+                return `THR: ${thr} rupiah\nPPh: ${pph} rupiah\nTotal Pembayaran: ${totalPembayaran} rupiah`;
+            }
+
+            function prosesPembayaran() {
+                const gajiPokok = parseFloat(document.getElementById("gajiPokok").value);
+                const tunjanganTetap = parseFloat(document.getElementById("tunjanganTetap").value);
+                const masaKerja = parseInt(document.getElementById("masaKerja").value);
+                const ptkp = 4500000; // 
+                const thr = hitungTHR(gajiPokok, tunjanganTetap, masaKerja);
+                const gajiTotal = gajiPokok + tunjanganTetap + thr;
+                const pph = hitungPPh(gajiTotal, ptkp);
+                const totalPembayaran = thr - pph;
+
+                const output = tampilkanOutput(thr, pph, totalPembayaran);
+                document.getElementById("output").innerText = output;
+            }
+    </script>
+</body>
+
+</html>
+<!-- Jonathan 2226240026 -–>
