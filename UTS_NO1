@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simulasi Pembayaran THR</title>
+</head>
+
+<body>
+    <h2>Simulasi Pembayaran THR</h2>
+    <label for="gajiPokok">Gaji Pokok:</label>
+    <input type="number" id="gajiPokok"><br><br>
+    <label for="tunjanganTetap">Tunjangan Tetap:</label>
+    <input type="number" id="tunjanganTetap"><br><br>
+    <label for="masaKerja">Masa Kerja (tahun):</label>
+    <input type="number" id="masaKerja"><br><br>
+    <button onclick="prosesPembayaranTHR()">Hitung THR</button><br><br>
+    <p id="output"></p>
+
+    <script>
+        function hitungTHR(gajiPokok, tunjanganTetap, masaKerja) {
+            var thr = 0;
+
+            if (masaKerja < 1) {
+                thr = 0;
+            } else if (masaKerja >= 1 && masaKerja < 5) {
+                thr = 1 * (gajiPokok + tunjanganTetap);
+            } else if (masaKerja >= 5 && masaKerja < 10) {
+                thr = 2 * (gajiPokok + tunjanganTetap);
+            } else if (masaKerja >=
+                10) {
+                thr = 3 * (gajiPokok + tunjanganTetap);
+            }
+
+            return thr;
+        }
+
+        function tampilkanOutput(gajiPokok, tunjanganTetap, masaKerja) {
+            var thr = hitungTHR(gajiPokok, tunjanganTetap, masaKerja);
+            var output = "Berdasarkan gaji pokok sebesar " + gajiPokok + " dan tunjangan tetap sebesar " +
+                tunjanganTetap + ", serta masa kerja " + masaKerja + " tahun, THR yang Anda terima adalah sebesar " +
+                thr + " rupiah.";
+            return output;
+        }
+
+        function prosesPembayaranTHR() {
+            var gajiPokok = parseFloat(document.getElementById("gajiPokok").value);
+            var tunjanganTetap = parseFloat(document.getElementById("tunjanganTetap").value);
+            var masaKerja = parseInt(document.getElementById("masaKerja").value);
+
+            var output = tampilkanOutput(gajiPokok, tunjanganTetap, masaKerja);
+            document.getElementById("output").innerText = output;
+        }
+    </script>
+</body>
+
+</html>
+<!-- Jonathan 2226240026 -–>
